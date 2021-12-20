@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<div class="paper-detail">
+    <img src="{{ paper.paper.url }}" class="paper-pdf">
+    <div class="paper-info">
+        <a href="{% url 'app:users_detail' paper.user.id %}">
+            @{{ paper.user }}
+        </a>
+    </div>
+    <h2>{{ paper.title }}</h2>
+    <p>{{ paper.comment }}</p>
+
+    <!-- 削除ボタン -->
+    {% if request.user == paper.user %}
+    <form method="POST" action="{% url 'app:papers_delete' paper.id %}">
+        {% csrf_token %}
+        <button class="btn" type="submit" onclick='return confirm("本当に削除しますか?");'>削除</button>
+    </form>
+    {% endif %}
+
+</div>
+
+{% endblock %}

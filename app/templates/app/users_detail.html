@@ -1,0 +1,39 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<h2 class="user-name">@{{ user.username }}</h2>
+
+{% if papers.count != 0 %}
+    <p>投稿<strong>{{ papers.count }}</strong>件</p>
+{% else %}
+    {% if user == request.user %}
+        <p>初めての投稿をしてみましょう!</p>
+    {% else %}
+        <p>@{{ user.username }}さんはまだ投稿していません。</p>
+    {% endif %}
+{% endif %}
+
+{% include 'app/papers_list.html' %}
+
+{% if user.is_superuser %}
+<p>管理者</p>
+{% else %}
+<p>一般ユーザー</p>
+{% endif %}
+
+<!-- <div class="paper-container">
+{% for paper in papers %}
+    <div class="paper">
+        <a href="{% url 'app:papers_detail' paper.id %}">
+            <img src="{{ paper.image.url }}" class="paper-img">
+        </a>
+        <div class="paper-info">
+            <a href="" class="category">{{ paper.category }}</a>
+            <a href="{% url 'app:users_detail' paper.user.id %}">@{{ paper.user}}</a>
+        </div>
+    </div>
+{% endfor %}
+</div> -->
+
+{% endblock %}

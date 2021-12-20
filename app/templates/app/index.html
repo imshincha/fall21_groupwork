@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+{% if category %}
+    <h2>カテゴリー:{{ category.title }} の検索結果</h2>
+{% endif %}
+
+{% include 'app/papers_list.html' %}
+<!-- 
+<div class="paper-container">
+{% for paper in papers %}
+    <div class="paper">
+        <iframe src="{{ paper.paper.url }}" width="100%" height="300px" frameborder="0"></iframe>
+        <a href="{% url 'app:papers_detail' paper.id %}">
+            <iframe src="{{ paper.paper.url }}" width="100%" height="300px" frameborder="0"></iframe>
+        </a>
+        <div class="paper-info">
+            <a href="" class="category">{{ paper.category }}</a>
+            <a href="{% url 'app:users_detail' paper.user.id %}">@{{ paper.user}}</a>
+        </div>
+    </div>
+{% endfor %}
+</div> -->
+
+{% endblock %}
